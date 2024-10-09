@@ -18,6 +18,12 @@ public class Main {
                     e.getMessage());
         }
 
+        before((request, response) -> {
+            response.header("Access-Control-Allow-Origin", "*"); // Permitir todas las fuentes
+            response.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS"); // Métodos permitidos
+            response.header("Access-Control-Allow-Headers", "Content-Type, Authorization"); // Encabezados permitidos
+        });
+        
         get("/getMateriasPrimas",MpController.getAll);
         get("/getMateriaPrima/:id", MpController.getById);
         delete("/deleteMateriaPrima/:id", MpController.delete);
